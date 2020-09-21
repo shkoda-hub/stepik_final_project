@@ -24,9 +24,15 @@ class BasePage():
 
     def click_on_element(self, how, what):
         WebDriverWait(self.browser, 5).until(
-            EC.visibility_of_element_located((how, what))
+            EC.element_to_be_clickable((how, what))
         )
         self.browser.find_element(how, what).click()
+
+    def get_text_from_element(self, how, what):
+        WebDriverWait(self.browser, 5).until(
+            EC.visibility_of_element_located((how, what))
+        )
+        return self.browser.find_element(how, what).text
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
