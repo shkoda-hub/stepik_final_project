@@ -20,5 +20,13 @@ class ProductPage(BasePage):
             'Massage about added to busked not found'
 
     def should_be_correct_price_after_adding_to_busked(self, product_price):
-        assert product_price == self.get_text_from_element(*ProductPageLocators.MASSEGE_ABOUT_BUSKED_PRICE), \
+        assert product_price == self.get_text_from_element(*ProductPageLocators.MASSAGE_ABOUT_BUSKED_PRICE), \
             'Incorrect price in busked massage'
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            'Success message is presented, but should not be'
+
+    def should_be_disappeared_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            'Success message is not disappeared, but should be'
