@@ -28,6 +28,12 @@ class BasePage():
         )
         self.browser.find_element(how, what).click()
 
+    def input_text_to_field(self, how, what, text):
+        WebDriverWait(self.browser, 5).until(
+            EC.presence_of_element_located((how, what))
+        )
+        self.browser.find_element(how, what).send_keys(text)
+
     def get_text_from_element(self, how, what):
         WebDriverWait(self.browser, 5).until(
             EC.presence_of_element_located((how, what))
@@ -69,3 +75,11 @@ class BasePage():
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def go_to_basket(self):
+        self.click_on_element(*BasePageLocators.VIEW_BASKET_BUTTON)
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), \
+            'User icon is not presented, probably unauthorised user'
+
