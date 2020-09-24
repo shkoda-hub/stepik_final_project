@@ -1,25 +1,11 @@
 import pytest
-
 from .pages.main_page import MainPage
-from .pages.base_page import BasePage
 from .pages.login_page import LoginPage
-from .pages.locators import BasePageLocators
 from .pages.basket_page import BasketPage
 
 
-@pytest.mark.skip
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = 'http://selenium1py.pythonanywhere.com/'
-    page = MainPage(browser, link)
-    page.open()
-    page.go_to_basket()
-    basket_page = BasketPage(browser, browser.current_url)
-    basket_page.basket_items_should_not_be_present()
-    basket_page.text_about_empty_basket_should_be_present()
-
-
-def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
-    link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/'
     page = MainPage(browser, link)
     page.open()
     page.go_to_basket()
